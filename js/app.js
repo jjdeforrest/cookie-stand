@@ -2,44 +2,111 @@
 
 var container = document.getElementById('stores');
 var img = document.createElement('img');
-img.setAttribute('src','img/salmon.png');
+img.setAttribute('src', 'img/salmon.png');
 container.appendChild(img);
 
-var article = document.createElement('article');
-article.textContent = ' I am list';
-container.appendChild(article);
+var times = ['6am:', '7am:', '8am:', '9am:', '10am:', '11am:', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-var par = document.createElement('p');
-par.textContent = 'price';
-container.appendChild(par);
-
-
-var times = ['6am:', '7am:', '8am:', '9am:', '10am:','11am:', '12pm', '1pm', '2pm', '3pm', '4pm','5pm', '6pm', '7pm'];
-
-    for (var i = 0; i < times.length; i++){
-        let h = i;
-        let p = i;
-    article.appendChild(document.createTextNode(times[i]));
-    }
 var seattle = {
+    name: 'seattle',
     mincust: 23,
     maxcust: 65,
     avgcust: 6.3,
+    sales: [],
+    getSales: function () {
+        var rand = Math.random();
+        var range = this.maxcust - this.mincust;
+        var custhour = this.mincust + Math.floor(rand * range);
+        return custhour;
+    }
+};
+var tokyo = {
+    name: 'tokyo',
+    mincust: 3,
+    maxcust: 24,
+    avgcust: 1.2,
+    sales: [],
+    getSales: function () {
+        var rand = Math.random();
+        var range = this.maxcust - this.mincust;
+        var custhour = this.mincust + Math.floor(rand * range);
+        return custhour;
+    }
+};
+var dubai = {
+    name: 'dubai',
+    mincust: 11,
+    maxcust: 38,
+    avgcust: 3.7,
+    sales: [],
+    getSales: function () {
+        var rand = Math.random();
+        var range = this.maxcust - this.mincust;
+        var custhour = this.mincust + Math.floor(rand * range);
+        return custhour;
+    }
+};
+var paris = {
+    name: 'paris',
+    mincust: 20,
+    maxcust: 38,
+    avgcust: 2.3,
+    sales: [],
+    getSales: function () {
+        var rand = Math.random();
+        var range = this.maxcust - this.mincust;
+        var custhour = this.mincust + Math.floor(rand * range);
+        return custhour
+    }
+};
+var lima = {
+    name: 'lima',
+    mincust: 2,
+    maxcust: 16,
+    avgcust: 4.6,
+    sales: [],
+    getSales: function () {
+        var rand = Math.random();
+        var range = this.maxcust - this.mincust;
+        var custhour = this.mincust + Math.floor(rand * range);
+        return custhour;
+    }
+};
+
+function getsData(location) {
+    for (var i = 0; i < times.length; i++) {
+        var cookies = Math.ceil(location.getSales() * location.avgcust);
+        location.sales[i] = times[i] + cookies;
+    }
 }
-var hello = 0;
 
-function getrandom(min, max){
-    min = Math.ceil(23);
-    max = Math.floor(65);
-    hello = Math.floor(Math.random() * (max - min + 1)) + min;
-    return hello;
+
+
+var times = ['6am:', '7am:', '8am:', '9am:', '10am:', '11am:', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+
+function datalocation(location) {
+    var p = document.createElement('p');
+    container.appendChild(p);
+    var ul = document.createElement('ul');
+    container.appendChild(ul);
+    ul.textContent = location.name;
+    for (var i = 0; i < times.length; i++) {
+        var li = document.createElement('li');
+        ul.appendChild(li);
+        li.textContent = times[i] + '$' +location.getSales();
+    }
 }
-var itstime = getrandom();
-par.appendChild(document.createTextNode('$' + getrandom()));
 
 
-console.log(getrandom);
-var tokyo = {mincust: 3, maxcust: 24, avgcust: 1.2}
-var dubai = {mincust: 11, maxcust: 38, avgcust: 3.7}
-var paris = {mincust: 20, maxcust: 38, avgcust: 2.3}
-var lima = {mincust: 2, maxcust: 16, avgcust: 4.6}
+getsData(seattle);
+getsData(tokyo);
+getsData(dubai);
+getsData(paris);
+getsData(lima);
+
+datalocation(seattle);
+datalocation(tokyo);
+datalocation(dubai);
+datalocation(paris);
+datalocation(lima);
+

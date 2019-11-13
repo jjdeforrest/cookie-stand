@@ -93,7 +93,7 @@ function datalocation(location) {
     for (var i = 0; i < times.length; i++) {
         var li = document.createElement('li');
         ul.appendChild(li);
-        li.textContent = times[i] + '$' +location.getSales();
+        li.textContent = times[i] + location.getSales() + ' cookies';
     }
 }
 

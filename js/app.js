@@ -13,12 +13,12 @@ var headerRowElem = addElement('tr', tableElem);
 addElement('th', headerRowElem, ' ');
 
 
-function makeStores(){
-  allStores.push(new Store('Seattle',23,65,6.3));
-  allStores.push(new Store('Tokyo',3,24,1.2));
-  allStores.push(new Store('Dubai',11,38,3.7));
-  allStores.push(new Store('Paris',20,38,2.3));
-  allStores.push(new Store('Lima',2,16,4.6));
+function makeStores() {
+  allStores.push(new Store('Seattle', 23, 65, 6.3));
+  allStores.push(new Store('Tokyo', 3, 24, 1.2));
+  allStores.push(new Store('Dubai', 11, 38, 3.7));
+  allStores.push(new Store('Paris', 20, 38, 2.3));
+  allStores.push(new Store('Lima', 2, 16, 4.6));
 }
 
 
@@ -29,7 +29,7 @@ function addElement(tag, container, text) {
   return element;
 }
 
-function Store (name, mincust, maxcust, avcust) {
+function Store(name, mincust, maxcust, avcust) {
   this.name = name;
   this.mincust = mincust;
   this.maxcust = maxcust;
@@ -38,13 +38,13 @@ function Store (name, mincust, maxcust, avcust) {
   this.total = 0;
   this.totalHours = [];
 
-  
+
   for (var i = 0; i < times.length; i++) {
     this.thingsSold.push(randomcust(this.mincust, this.maxcust, this.avgcust));
     this.total += this.thingsSold[i];
   }
 }
-function randomcust (min, max, avrg) {
+function randomcust(min, max, avrg) {
   var rand = Math.floor(Math.random() * (max - min + 1) + min);
   return Math.floor(rand * avrg);
 }
@@ -52,44 +52,52 @@ function randomcust (min, max, avrg) {
 function timesTopRow() {
   for (var i = 0; i < times.length; i++) {
     addElement('th', headerRowElem, times[i]);
-  } 
+  }
   addElement('th', headerRowElem, 'Total');
 }
 
-Store.prototype.render = function() {
+Store.prototype.render = function () {
   var dataRowElem = addElement('tr', tableElem);
   addElement('td', dataRowElem, this.name);
   for (var i = 0; i < times.length; i++) {
-    addElement('td', dataRowElem,this.thingsSold[i]);
+    addElement('td', dataRowElem, this.thingsSold[i]);
   }
   addElement('td', dataRowElem, this.total);
-}
+};
 
 function callStoresToRender() {
-  for(var i = 0; i < allStores.length; i++) {
+  for (var i = 0; i < allStores.length; i++) {
     var each = allStores[i];
     each.render();
   }
 }
 
-var footerTotal = []; 
+var footerTotal = [];
 
-function totalForHours(){
-  for (var j = 0; j < times.length; j++){
+
+
+function totalForHours() {
+  for (var j = 0; j < times.length; j++) {
     var hourTotal = 0;
-    for (var i = 0; i < allStores.length; i++){
+    for (var i = 0; i < allStores.length; i++) {
       hourTotal += allStores[i].thingsSold[j];
     }
     footerTotal.push(hourTotal);
   }
 }
 
-function addFooterRow(){
+
+function addFooterRow() {
+  var completeTotal = 0;
   var footerRow = addElement('tr', tableElem);
   addElement('td', footerRow, 'Totals');
-  for ( var i = 0; i < times.length; i++){
+  for (var i = 0; i < times.length; i++) {
     addElement('td', footerRow, footerTotal[i]);
+  } 
+  for (var j = 0; j < footerTotal.length; j++) {
+    completeTotal += footerTotal[j];
   }
+  addElement('td', footerRow, completeTotal);
 }
 
 makeStores();

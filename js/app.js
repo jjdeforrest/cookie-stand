@@ -22,9 +22,9 @@ function makeStores() {
 }
 
 
-function addElement(tag, container, text) {
+function addElement(tag, dog , text) {
   var element = document.createElement(tag);
-  container.appendChild(element);
+  dog.appendChild(element);
   element.textContent = text;
   return element;
 }
@@ -56,6 +56,8 @@ function timesTopRow() {
   addElement('th', headerRowElem, 'Total');
 }
 
+
+
 Store.prototype.render = function () {
   var dataRowElem = addElement('tr', tableElem);
   addElement('td', dataRowElem, this.name);
@@ -69,6 +71,7 @@ function callStoresToRender() {
   for (var i = 0; i < allStores.length; i++) {
     var each = allStores[i];
     each.render();
+    console.log(each, 'this is all stores');
   }
 }
 
@@ -91,14 +94,45 @@ function addFooterRow() {
   var completeTotal = 0;
   var footerRow = addElement('tr', tableElem);
   addElement('td', footerRow, 'Totals');
-  for (var i = 0; i < times.length; i++) {
+  for (var i =0; i < footerTotal.length; i++){
     addElement('td', footerRow, footerTotal[i]);
-  } 
-  for (var j = 0; j < footerTotal.length; j++) {
-    completeTotal += footerTotal[j];
+    completeTotal += footerTotal[i];
+ 
+  // for (var j = 0; j <footerTotal.length + 1; j++){
+  //   console.log(footerTotal[j]);
+  //   completeTotal += footerTotal[j];
+  //   console.log(completeTotal);
   }
   addElement('td', footerRow, completeTotal);
+  
 }
+
+function submitHandler(event) {
+  event.preventDefault();
+  var newLocation = event.target.newStoreLocation.value;
+  var newMinCustomers = parseInt(event.target.minCustomers.value);
+  var newMaxCustomers = parseInt(event.target.maxCustomers.value);
+  var newaveHourleySales = parseInt(event.target.aveHourlySales.value);
+  var newStore = new Store(newLocation, newMinCustomers, newMaxCustomers, newaveHourleySales);
+  // console.log(newStore);
+  allStores.push(newStore);
+  tableElem.deleteRow(-1);
+  newStore.render();
+  addFooterRow();
+  event.target.reset();
+
+}
+
+
+
+var form = document.getElementById('addStore');
+form.addEventListener('submit', submitHandler);
+
+for (var i = 0; i < allStores.length; i++) {
+  allStores[i].renderBody(container);
+}
+
+
 
 makeStores();
 timesTopRow();

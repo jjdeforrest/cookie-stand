@@ -7,8 +7,29 @@
     </head>
 <body>
     <main>
-        <div id="stores">
+        <div >
+        
+                <form action="" id="addStore">
+                    <fieldset>
+                    <label for="newStoreLocation">New Store Location: </label>
+                    <input name="newStoreLocation" type="text" placeholder="New Location" required/>
+                
+                    <label for="minCustomers">Minimum number of customers in a day:</label>
+                    <input type="number" name="minCustomers" step='.1'required>
+                  <br>
+                    <label for="maxCustomers">Maximum number of customers in a day:</label>
+                    <input type="number" name="maxCustomers" step='.1'required>
+                  <br>
+                    <label for="aveHourlySales">Average number of cookie sales per hour:</label>
+                    <input type="number" name="aveHourlySales" step='.1'required>
+                  <br>
+                  <button>Submit</button>
+                </fieldset>
+              </form>
+              <div id="stores">
 
+              </div>
+              
 
         </div>
     </main>

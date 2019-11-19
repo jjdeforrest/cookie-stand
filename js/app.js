@@ -80,6 +80,7 @@ var footerTotal = [];
 
 
 function totalForHours() {
+  footerTotal = [];
   for (var j = 0; j < times.length; j++) {
     var hourTotal = 0;
     for (var i = 0; i < allStores.length; i++) {
@@ -97,11 +98,6 @@ function addFooterRow() {
   for (var i =0; i < footerTotal.length; i++){
     addElement('td', footerRow, footerTotal[i]);
     completeTotal += footerTotal[i];
- 
-  // for (var j = 0; j <footerTotal.length + 1; j++){
-  //   console.log(footerTotal[j]);
-  //   completeTotal += footerTotal[j];
-  //   console.log(completeTotal);
   }
   addElement('td', footerRow, completeTotal);
   
@@ -114,9 +110,9 @@ function submitHandler(event) {
   var newMaxCustomers = parseInt(event.target.maxCustomers.value);
   var newaveHourleySales = parseInt(event.target.aveHourlySales.value);
   var newStore = new Store(newLocation, newMinCustomers, newMaxCustomers, newaveHourleySales);
-  // console.log(newStore);
   allStores.push(newStore);
   tableElem.deleteRow(-1);
+  totalForHours();
   newStore.render();
   addFooterRow();
   event.target.reset();

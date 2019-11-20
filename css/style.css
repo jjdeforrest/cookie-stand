@@ -1,0 +1,44 @@
+@import "reset.css";
+
+
+
+article th {
+  padding-top: 17px;
+  padding-bottom: 19px;
+  text-align: center;
+  background-color: rgb(27, 38, 189);
+  color: rgb(233, 219, 219);
+  table-layout: fixed;
+  width: 100px;
+}
+
+article td:nth-child(1) {
+  padding-top: 19px;
+  padding-bottom: 17px;
+  text-align: left;
+  background-color: rgb(54, 67, 184);
+  color: rgb(216, 195, 195);
+}
+
+article tr:nth-child(){background-color: #6465ac;}
+
+article td {
+  font-family: Verdana, Helvetica, sans-serif;
+}
+
+table, th, td {
+  border: 7px solid black;
+  text-align: center;
+  padding: 18px;
+  margin: Auto;
+}
+
+.forms {
+  border: 2px solid black;
+  text-align: center;
+
+}
+
+.link {
+  font-size: 8em;
+}

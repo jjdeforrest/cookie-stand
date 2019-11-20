@@ -1,0 +1,40 @@
+@import "reset.css";
+
+/* font-family: 'Bebas Neue', cursive; */
+
+* {
+  background-color: rgb(94, 116, 245);
+}
+
+
+h1 {
+  text-align: center;
+  font-size: 3em;
+
+
+}
+
+p{
+  font-size: 1.5em;
+  text-align: center;
+  font-family: Verdana, Helvetica, sans-serif;
+}
+
+.link {
+  font-size: 5em;
+}
+
+.class {
+  float: center;
+}
+
+footer {
+  font-family: 'Bebas Neue', cursive;
+  margin: auto;
+  font-size: 3em;
+  text-align: center;
+}
+
+.hello {
+  float: center;
+}
